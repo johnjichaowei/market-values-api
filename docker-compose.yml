@@ -1,0 +1,37 @@
+version: '2.4'
+
+services:
+  base:
+    build:
+      context: .
+    volumes:
+      - .:/app
+
+  web:
+    extends:
+      file: docker-compose.yml
+      service: base
+    ports:
+      - "8080:80"
+    tty: true
+    environment:
+      - APP_ENV=production
+
+  dev:
+    extends:
+      file: docker-compose.yml
+      service: base
+    ports:
+      - "8080:80"
+    environment:
+      - APP_ENV=development
+    command: bash
+
+  test:
+    extends:
+      file: docker-compose.yml
+      service: base
+    tty: true
+    environment:
+      - APP_ENV=test
+    command: pipenv run python -m pytest
