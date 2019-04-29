@@ -1,0 +1,2 @@
+class MarketValueClientError(Exception):
+    pass
