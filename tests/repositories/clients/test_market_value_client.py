@@ -16,12 +16,6 @@ class TestMarketValueClient(object):
         with asynctest.patch.dict(os.environ, {'MARKET_VALUE_HOST_URL': host_url}, scope=asynctest.LIMITED) as patched_env:
             yield patched_env
 
-
-    @pytest.fixture
-    def session(self):
-        with asynctest.patch('aiohttp.ClientSession', autospec=True, scope=asynctest.LIMITED) as session_class:
-            yield session_class.return_value
-
     @pytest.fixture
     def mock_response(self, session):
         def _mock_response_func(response_code=200, response_text='OK'):
@@ -53,7 +47,7 @@ class TestMarketValueClient(object):
     @pytest.mark.usefixtures("set_url_env")
     async def test_get_raises_exception_if_not_200(self, session, mock_response):
         response_code = 400
-        response = mock_response(response_code)
+        mock_response(response_code)
         client = MarketValueClient(session)
         with pytest.raises(MarketValueClientError) as err:
             await client.get('CBA')

@@ -4,6 +4,7 @@ import os
 from market_values_api.exceptions.market_value_client_error import MarketValueClientError
 
 class MarketValueClient(object):
+
     def __init__(self, session):
         self.session = session
 
