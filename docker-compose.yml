@@ -23,8 +23,10 @@ services:
       service: base
     ports:
       - "8080:80"
+    tty: true
     environment:
       - APP_ENV=development
+      - MARKET_VALUE_HOST_URL=https://dummy-finance-site.com
     command: bash
 
   test:
