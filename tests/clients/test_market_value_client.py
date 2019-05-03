@@ -2,8 +2,8 @@ import aiohttp
 import pytest
 import asynctest
 import os
-from market_values_api.repositories.clients.market_value_client import MarketValueClient
-from market_values_api.exceptions.market_value_client_error import MarketValueClientError
+from market_values_api.clients import MarketValueClient
+from market_values_api.exceptions import MarketValueClientError
 
 class TestMarketValueClient(object):
 

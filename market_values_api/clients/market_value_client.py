@@ -1,7 +1,7 @@
 import pytest
 import logging
 import os
-from market_values_api.exceptions.market_value_client_error import MarketValueClientError
+from market_values_api.exceptions import MarketValueClientError
 
 class MarketValueClient(object):
 

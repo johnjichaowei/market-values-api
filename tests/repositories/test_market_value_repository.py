@@ -1,14 +1,14 @@
 import pytest
 import asynctest
 from decimal import Decimal
-from market_values_api.repositories.market_value_repository import MarketValueRepository
+from market_values_api.repositories import MarketValueRepository
 
 class TestMarketValueRepository(object):
 
     @pytest.fixture
     def mocked_client_class(self):
         with asynctest.patch(
-            'market_values_api.repositories.clients.market_value_client.MarketValueClient',
+            'market_values_api.clients.MarketValueClient',
             autospec=True, scope=asynctest.LIMITED
         ) as client_class:
             yield client_class
@@ -25,7 +25,7 @@ class TestMarketValueRepository(object):
     @pytest.fixture
     def mocked_parser_class(self):
         with asynctest.patch(
-            'market_values_api.repositories.parsers.parse_market_value.ParseMarketValue',
+            'market_values_api.parsers.ParseMarketValue',
             autospec=True, scope=asynctest.LIMITED
         ) as parser_class:
             yield parser_class

@@ -1,7 +1,7 @@
 import pytest
 from decimal import Decimal
-from market_values_api.repositories.parsers.parse_market_value import ParseMarketValue
-from market_values_api.exceptions.parse_market_value_error import ParseMarketValueError
+from market_values_api.parsers import ParseMarketValue
+from market_values_api.exceptions import ParseMarketValueError
 
 class TestParseMarketValue(object):
 
