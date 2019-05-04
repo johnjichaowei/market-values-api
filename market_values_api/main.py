@@ -1,6 +1,4 @@
 from aiohttp import web
-from routes import setup_routes
+from web_app import init_web_app
 
-app = web.Application()
-setup_routes(app)
-web.run_app(app, port=80)
+web.run_app(init_web_app(), port=80)

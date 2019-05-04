@@ -6,6 +6,9 @@ services:
       context: .
     volumes:
       - .:/app
+    tty: true
+    environment:
+      - PYTHONPATH=.
 
   web:
     extends:
@@ -23,7 +26,6 @@ services:
       service: base
     ports:
       - "8080:80"
-    tty: true
     environment:
       - APP_ENV=development
       - MARKET_VALUE_HOST_URL=https://dummy-finance-site.com
@@ -33,7 +35,6 @@ services:
     extends:
       file: docker-compose.yml
       service: base
-    tty: true
     environment:
       - APP_ENV=test
     command: pipenv run python -m pytest
