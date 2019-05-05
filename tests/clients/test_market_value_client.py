@@ -1,36 +1,10 @@
 import aiohttp
 import pytest
 import asynctest
-import os
 from market_values_api.clients import MarketValueClient
 from market_values_api.exceptions import MarketValueClientError
 
 class TestMarketValueClient(object):
-
-    @pytest.fixture
-    def host_url(self):
-        return 'http://dummy-url'
-
-    @pytest.fixture
-    def set_url_env(self, host_url):
-        with asynctest.patch.dict(os.environ, {'MARKET_VALUE_HOST_URL': host_url}, scope=asynctest.LIMITED) as patched_env:
-            yield patched_env
-
-    @pytest.fixture
-    def response_class(self):
-        with asynctest.patch('aiohttp.ClientResponse', autospec=True, scope=asynctest.LIMITED) as response_class:
-            yield response_class
-
-    @pytest.fixture
-    def mock_response(self, session, response_class):
-        def _mock_response_func(response_code=200, response_text='OK'):
-                response = response_class.return_value
-                response.status = response_code
-                response.text = asynctest.CoroutineMock(return_value=response_text)
-                response.__aenter__.return_value = response
-                session.get.return_value = response
-
-        return _mock_response_func
 
     @pytest.mark.usefixtures("set_url_env")
     async def test_get_calls_get_method_of_session_client(self, host_url, session, mock_response):

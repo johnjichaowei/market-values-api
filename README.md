@@ -1,5 +1,5 @@
 # market-values-api
-One web api to query market value for listed companies, which is used to illustrate the use of [AsyncIO](https://docs.python.org/3/library/asyncio.html), [aiohttp](https://aiohttp.readthedocs.io/en/stable/), as well as writing unit tests with [pytest-asyncio](https://github.com/pytest-dev/pytest-asyncio).
+One web api to query market value for listed companies, which is used to illustrate the use of [AsyncIO](https://docs.python.org/3/library/asyncio.html), [aiohttp](https://aiohttp.readthedocs.io/en/stable/), as well as unit tests with [asynctest](https://asynctest.readthedocs.io/en/latest/).
 
 ## Setup project
 
