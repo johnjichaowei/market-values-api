@@ -1,5 +1,5 @@
 import aiohttp
-from market_values_api.handlers import get_market_values
+from market_values_api.handlers import MarketValuesHandler
 
 def init_web_app():
     app = aiohttp.web.Application()
@@ -9,7 +9,7 @@ def init_web_app():
     return app
 
 def setup_routes(app):
-    app.router.add_get('/market_values', get_market_values)
+    app.router.add_get('/market_values', MarketValuesHandler().get)
 
 async def init_client_session(app):
     app['client_session'] = aiohttp.ClientSession()

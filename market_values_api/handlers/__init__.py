@@ -1,1 +1,1 @@
-from .get_market_values import get_market_values
+from .market_values_handler import MarketValuesHandler

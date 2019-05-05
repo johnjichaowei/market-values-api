@@ -12,6 +12,7 @@ asynctest = "*"
 aiodns = "*"
 aiohttp = "*"
 cchardet = "*"
+simplejson = "*"
 
 [requires]
 python_version = "3.7"

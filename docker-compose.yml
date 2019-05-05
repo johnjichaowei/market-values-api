@@ -19,6 +19,7 @@ services:
     tty: true
     environment:
       - APP_ENV=production
+      - MARKET_VALUE_HOST_URL=https://au.finance.dummy.com
 
   dev:
     extends:
@@ -28,7 +29,7 @@ services:
       - "8080:80"
     environment:
       - APP_ENV=development
-      - MARKET_VALUE_HOST_URL=https://dummy-finance-site.com
+      - MARKET_VALUE_HOST_URL=https://au.finance.dummy.com
     command: bash
 
   test:

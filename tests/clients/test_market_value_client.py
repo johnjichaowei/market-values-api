@@ -17,10 +17,14 @@ class TestMarketValueClient(object):
             yield patched_env
 
     @pytest.fixture
-    def mock_response(self, session):
+    def response_class(self):
+        with asynctest.patch('aiohttp.ClientResponse', autospec=True, scope=asynctest.LIMITED) as response_class:
+            yield response_class
+
+    @pytest.fixture
+    def mock_response(self, session, response_class):
         def _mock_response_func(response_code=200, response_text='OK'):
-            with asynctest.patch('aiohttp.ClientResponse', autospec=True, scope=asynctest.LIMITED) as resp_class:
-                response = resp_class.return_value
+                response = response_class.return_value
                 response.status = response_code
                 response.text = asynctest.CoroutineMock(return_value=response_text)
                 response.__aenter__.return_value = response
